@@ -122,7 +122,7 @@ if ( ! class_exists( 'CMB2_Conditionals', false ) ) {
 			$enqueue_script = apply_filters( 'cmb2_conditionals_enqueue_script', $enqueue_script );
 
 			// possibility to change script source
-			$script_src = apply_filters( 'cmb2_conditionals_enqueue_script_src', plugins_url( '/cmb2-conditionals.js', __FILE__ ) );
+			$script_src = apply_filters( 'cmb2_conditionals_enqueue_script_src', plugins_url( '/admin/cmb2-conditionals.js', __FILE__ ) );
 
 			if ( $enqueue_script ) {
 				wp_enqueue_script(
@@ -133,6 +133,12 @@ if ( ! class_exists( 'CMB2_Conditionals', false ) ) {
 					true
 				);
 			}
+
+			?>
+			<style type="text/css">
+				.empty-row.hidden { display: none!important; }
+			</style>
+			<?php
 
 		}
 
@@ -269,27 +275,15 @@ if ( ! class_exists( 'CMB2_Conditionals', false ) ) {
 	} /* End of class. */
 
 
-	/**
-	 * Instantiate our class.
-	 *
-	 * {@internal wp_installing() function was introduced in WP 4.4. The function exists and constant
-	 * check can be removed once the min version for this plugin has been upped to 4.4.}}
-	 */
-	if ( ( function_exists( 'wp_installing' ) && wp_installing() === false ) || ( ! function_exists( 'wp_installing' ) && ( ! defined( 'WP_INSTALLING' ) || WP_INSTALLING === false ) ) ) {
-		add_action( 'plugins_loaded', 'cmb2_conditionals_init' );
-	}
-
-	if ( ! function_exists( 'cmb2_conditionals_init' ) ) {
-		/**
-		 * Initialize the class.
-		 */
-		function cmb2_conditionals_init() {
-			static $cmb2_conditionals = null;
-			if ( null === $cmb2_conditionals ) {
-				$cmb2_conditionals = new CMB2_Conditionals();
-			}
-
-			return $cmb2_conditionals;
+	
+	
+	function cmb2_conditionals_init() {
+		static $cmb2_conditionals = null;
+		if ( null === $cmb2_conditionals ) {
+			$cmb2_conditionals = new CMB2_Conditionals();
 		}
+
+		return $cmb2_conditionals;
 	}
+	
 } /* End of class-exists wrapper. */
