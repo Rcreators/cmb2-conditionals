@@ -102,9 +102,16 @@ jQuery( document ).ready( function( $ ) {
 
 						// Handle any actions necessary.
 						currentParent.toggle( shouldShow );
+
+						var mainParentGroup = currentParent.parents( '.cmb-row:first' );
+						mainParentGroup.toggle( shouldShow );
+
+						
 						if ( current.data( 'conditional-required' ) ) {
 							current.prop( 'required', shouldShow );
 						}
+						
+											
 
 						// If we're hiding the row, hide all dependants (and their dependants).
 						if ( false === shouldShow ) {
@@ -184,26 +191,6 @@ jQuery( document ).ready( function( $ ) {
 			}
 		}
 
-
-		/**
-		 * Set the initial state of new elements which are added to the page dynamically (i.e. group elms).
-		 */
-		$( '.cmb2-wrap > .cmb2-metabox' ).on( 'cmb2_add_row', function( evt, row ) {
-			var rowFormElms,
-				rowRequiredElms = $( '[data-conditional-id][required]', row );
-
-			rowRequiredElms.data( 'conditional-required', rowRequiredElms.prop( 'required' ) ).prop( 'required', false );
-
-			// Hide all conditional elements
-			$( '[data-conditional-id]', row ).parents( '.cmb-row:first' ).hide();
-
-			rowFormElms = $( ':input', row );
-			if ( 1 === rowFormElms.length || ! rowFormElms.is( ':checked' ) ) {
-				rowFormElms.trigger( 'change' );
-			} else {
-				rowFormElms.filter( ':checked' ).trigger( 'change' );
-			}
-		});
 	}
 
 
