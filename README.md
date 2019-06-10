@@ -1,44 +1,24 @@
-# CMB2 Conditionals
-
-[![Join the chat at https://gitter.im/jcchavezs/cmb2-conditionals](https://badges.gitter.im/jcchavezs/cmb2-conditionals.svg)](https://gitter.im/jcchavezs/cmb2-conditionals?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Total Downloads](https://poser.pugx.org/jcchavezs/cmb2-conditionals/downloads)](https://packagist.org/packages/jcchavezs/cmb2-conditionals)
-[![License](https://poser.pugx.org/jcchavezs/cmb2-conditionals/license)](https://packagist.org/packages/jcchavezs/cmb2-conditionals)
-
-**Contributors:**      [jcchavezs](https://github.com/jcchavezs), [jrfnl](https://github.com/jrfnl)
-**Tags:**              cmb2, conditionals, metaboxes  
-**Requires at least:** 3.8.0  
-**Tested up to:**      4.3  
-**Stable tag:**        1.0.4  
-**License:**           GPLv2 or later  
-**License URI:**       [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)  
-
-## Disclaimer
-
-This plugin is loved by many people but unfortunately I can not maintain it anymore so if you want to be a contributor just [ping me on gitter](https://gitter.im/jcchavezs).
-
-## Description
-
-**CMB2 Conditionals** is a plugin for [CMB2](https://github.com/WebDevStudios/CMB2) which allows developers to relate fields so one of them could only appear when one other have an specific value or when is not empty.
-
-To get started, please follow the examples in the included `example-functions.php` file.
-
-## Requirements
-
-- PHP 5.2.4+
-- Wordpress 3.8+
-- CMB2
-
-## Contribution
-All contributions welcome. If you would like to submit a pull request, please check out the [master branch](https://github.com/jcchavezs/cmb2-conditionals/tree/master) and pull request against it. Please read the [CONTRIBUTING](https://github.com/jcchavezs/cmb2-conditionals/blob/master/CONTRIBUTING.md) doc for more details.
-
-A complete list of all our awesome contributors found here: [github.com/jcchavezs/cmb2-conditionals/graphs/contributors](https://github.com/jcchavezs/cmb2-conditionals/graphs/contributors)
+# CMB2 Conditionals Work With Nested Group and Can use directly in Plugin and Theme
 
 ## Installation
 
 If installing the plugin from wordpress.org:
 
-1. Upload the entire `/cmb2-conditionals` directory to the `/wp-content/plugins/` directory.
-2. Activate CMB2 Conditionals through the 'Plugins' menu in WordPress.
-2. Copy (and rename if desired) `example-functions.php` into to your theme or plugin's directory.
-2. Edit to only include the fields you need and rename the functions.
-4. Profit.
+1. Upload cmb2-conditionals.php file into plugin directory of your CMB2 Directory
+2. Create Admin Directory in CMB2 Plugin Directory
+3. Upload cmb2-conditionals.js file into Admin Directory
+4. Done
+
+## HOW to USE
+
+1. Open your meta box file.
+2. Include cmb2-conditionals.php file on top.
+
+```
+if ( file_exists( dirname( __FILE__ ) . '/cmb2/plugins/cmb2-conditionals.php' ) ) {
+	require_once dirname( __FILE__ ) . '/cmb2/plugins/cmb2-conditionals.php';
+	cmb2_conditionals_init();
+}
+```
+
+3. Use Attribute to show / Hide Group Box based on Parent Group Field Value
